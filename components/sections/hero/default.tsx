@@ -2,10 +2,8 @@ import { type VariantProps } from "class-variance-authority";
 import { ArrowRightIcon } from "lucide-react";
 import { ReactNode } from "react";
 
-import { siteConfig } from "@/config/site";
 import { cn } from "@/lib/utils";
 
-import Github from "../../logos/github";
 import { Badge } from "../../ui/badge";
 import { Button, buttonVariants } from "../../ui/button";
 import Glow from "../../ui/glow";
@@ -31,8 +29,8 @@ interface HeroProps {
 }
 
 export default function Hero({
-  title = "Give your big idea the design it deserves",
-  description = "Professionally designed blocks and templates built with React, Shadcn/ui and Tailwind that will help your product stand out.",
+  title = "Cut wasted tokens before you hit send.",
+  description = "reducr is a browser extension built for AI users who want to reduce token usage and lower the cost of using tools like Cursor and Claude. It cleans up bloated prompts, repeated context, and unnecessary verbosity before a request is sent, making AI workflows more efficient without changing the way users already work.",
   mockup = (
     <Screenshot
       srcLight="/dashboard-light.png"
@@ -46,25 +44,25 @@ export default function Hero({
   badge = (
     <Badge variant="outline" className="animate-appear">
       <span className="text-muted-foreground">
-        New version of Launch UI is out!
+        Reduce AI Spend
       </span>
-      <a href={siteConfig.getStartedUrl} className="flex items-center gap-1">
-        Get started
+      <a href="#how-it-works" className="flex items-center gap-1">
+        See how it works
         <ArrowRightIcon className="size-3" />
       </a>
     </Badge>
   ),
   buttons = [
     {
-      href: siteConfig.getStartedUrl,
-      text: "Get Started",
+      href: "#",
+      text: "Install Extension",
       variant: "default",
     },
     {
-      href: siteConfig.links.github,
-      text: "Github",
+      href: "#how-it-works",
+      text: "See How It Works",
       variant: "glow",
-      icon: <Github className="mr-2 size-4" />,
+      iconRight: <ArrowRightIcon className="size-4" />,
     },
   ],
   className,

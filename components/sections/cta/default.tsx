@@ -23,12 +23,17 @@ interface CTAProps {
 }
 
 export default function CTA({
-  title = "Start building",
+  title = "Spend less on AI, without changing how you work.",
   buttons = [
     {
-      href: siteConfig.getStartedUrl,
-      text: "Get Started",
+      href: "#",
+      text: "Install Extension",
       variant: "default",
+    },
+    {
+      href: siteConfig.links.email,
+      text: "Contact Us",
+      variant: "glow",
     },
   ],
   className,
@@ -36,16 +41,17 @@ export default function CTA({
   return (
     <Section className={cn("group relative overflow-hidden", className)}>
       <div className="max-w-container relative z-10 mx-auto flex flex-col items-center gap-6 text-center sm:gap-8">
-        <h2 className="max-w-[640px] text-3xl leading-tight font-semibold sm:text-5xl sm:leading-tight">
+        <h2 className="animate-appear max-w-[640px] text-3xl leading-tight font-semibold opacity-0 sm:text-5xl sm:leading-tight">
           {title}
         </h2>
         {buttons !== false && buttons.length > 0 && (
-          <div className="flex justify-center gap-4">
+          <div className="animate-appear flex justify-center gap-4 opacity-0 delay-200">
             {buttons.map((button, index) => (
               <Button
                 key={index}
                 variant={button.variant || "default"}
                 size="lg"
+                className="transition-all duration-300 hover:-translate-y-0.5"
                 asChild
               >
                 <a href={button.href}>

@@ -4,10 +4,8 @@ import Link from "next/link";
 import * as React from "react";
 import { ReactNode } from "react";
 
-import { siteConfig } from "@/config/site";
 import { cn } from "@/lib/utils";
 
-import LaunchUI from "../logos/launch-ui";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -48,17 +46,19 @@ interface NavigationProps {
 export default function Navigation({
   menuItems = [
     {
-      title: "Getting started",
-      content: "default",
-    },
-    {
-      title: "Components",
-      content: "components",
-    },
-    {
-      title: "Documentation",
+      title: "Features",
       isLink: true,
-      href: siteConfig.url,
+      href: "#features",
+    },
+    {
+      title: "How it works",
+      isLink: true,
+      href: "#how-it-works",
+    },
+    {
+      title: "FAQ",
+      isLink: true,
+      href: "#faq",
     },
   ],
   components = [
@@ -98,26 +98,25 @@ export default function Navigation({
         "A popup that displays information related to an element when the element receives keyboard focus or the mouse hovers over it.",
     },
   ],
-  logo = <LaunchUI />,
-  logoTitle = "Launch UI",
-  logoDescription = "Landing page template built with React, Shadcn/ui and Tailwind that you can copy/paste into your project.",
-  logoHref = siteConfig.url,
+  logo = <div className="size-4 rounded bg-brand/80" />,
+  logoTitle = "reducr",
+  logoDescription = "Reduce token waste in AI workflows.",
+  logoHref = "#",
   introItems = [
     {
-      title: "Introduction",
-      href: siteConfig.url,
-      description:
-        "Re-usable components built using Radix UI and Tailwind CSS.",
+      title: "Detect",
+      href: "#how-it-works",
+      description: "Find repeated context and prompt bloat.",
     },
     {
-      title: "Installation",
-      href: siteConfig.url,
-      description: "How to install dependencies and structure your app.",
+      title: "Optimize",
+      href: "#how-it-works",
+      description: "Get a compact, clearer prompt preview.",
     },
     {
-      title: "Typography",
-      href: siteConfig.url,
-      description: "Styles for headings, paragraphs, lists...etc",
+      title: "Save",
+      href: "#how-it-works",
+      description: "Track estimated token and cost reduction.",
     },
   ],
 }: NavigationProps) {
@@ -128,7 +127,10 @@ export default function Navigation({
           <NavigationMenuItem key={index}>
             {item.isLink ? (
               <NavigationMenuLink
-                className={navigationMenuTriggerStyle()}
+                className={cn(
+                  navigationMenuTriggerStyle(),
+                  "text-muted-foreground hover:text-foreground transition-colors duration-300",
+                )}
                 asChild
               >
                 <Link href={item.href || ""}>{item.title}</Link>

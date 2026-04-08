@@ -1,11 +1,9 @@
 import { type VariantProps } from "class-variance-authority";
-import { Menu } from "lucide-react";
+import { Menu, Sparkles } from "lucide-react";
 import { ReactNode } from "react";
 
-import { siteConfig } from "@/config/site";
 import { cn } from "@/lib/utils";
 
-import LaunchUI from "../../logos/launch-ui";
 import { Button, buttonVariants } from "../../ui/button";
 import {
   Navbar as NavbarComponent,
@@ -41,19 +39,23 @@ interface NavbarProps {
 }
 
 export default function Navbar({
-  logo = <LaunchUI />,
-  name = "Launch UI",
-  homeUrl = siteConfig.url,
+  logo = (
+    <div className="from-brand/90 to-brand/60 text-primary-foreground shadow-md flex size-7 items-center justify-center rounded-md bg-linear-to-br transition-transform duration-300 group-hover:scale-105">
+      <Sparkles className="size-4" />
+    </div>
+  ),
+  name = "reducr",
+  homeUrl = "#",
   mobileLinks = [
-    { text: "Getting Started", href: siteConfig.url },
-    { text: "Components", href: siteConfig.url },
-    { text: "Documentation", href: siteConfig.url },
+    { text: "Features", href: "#features" },
+    { text: "How it works", href: "#how-it-works" },
+    { text: "FAQ", href: "#faq" },
   ],
   actions = [
-    { text: "Sign in", href: siteConfig.url, isButton: false },
+    { text: "See How It Works", href: "#how-it-works", isButton: false },
     {
-      text: "Get Started",
-      href: siteConfig.url,
+      text: "Install Extension",
+      href: "#",
       isButton: true,
       variant: "default",
     },
@@ -63,14 +65,19 @@ export default function Navbar({
   className,
 }: NavbarProps) {
   return (
-    <header className={cn("sticky top-0 z-50 -mb-4 px-4 pb-4", className)}>
-      <div className="fade-bottom bg-background/15 absolute left-0 h-24 w-full backdrop-blur-lg"></div>
+    <header
+      className={cn(
+        "animate-appear sticky top-0 z-50 -mb-4 px-4 pb-4 opacity-0",
+        className,
+      )}
+    >
+      <div className="fade-bottom bg-background/25 absolute left-0 h-24 w-full backdrop-blur-lg"></div>
       <div className="max-w-container relative mx-auto">
-        <NavbarComponent>
+        <NavbarComponent className="group rounded-xl border border-white/10 bg-background/35 px-4 shadow-sm backdrop-blur-md transition-colors duration-300 hover:bg-background/45">
           <NavbarLeft>
             <a
               href={homeUrl}
-              className="flex items-center gap-2 text-xl font-bold"
+              className="group flex items-center gap-2 text-xl font-semibold tracking-tight transition-opacity duration-300 hover:opacity-90"
             >
               {logo}
               {name}
@@ -83,6 +90,7 @@ export default function Navbar({
                 <Button
                   key={index}
                   variant={action.variant || "default"}
+                  className="transition-all duration-300 hover:-translate-y-0.5"
                   asChild
                 >
                   <a href={action.href}>
@@ -95,7 +103,7 @@ export default function Navbar({
                 <a
                   key={index}
                   href={action.href}
-                  className="hidden text-sm md:block"
+                  className="hidden text-sm transition-colors duration-300 hover:text-brand md:block"
                 >
                   {action.text}
                 </a>
